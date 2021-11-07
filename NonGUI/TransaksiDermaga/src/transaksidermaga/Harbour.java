@@ -10,5 +10,23 @@ package transaksidermaga;
  * @author ShinyQ
  */
 public class Harbour {
+    private String harbourName;
+
+    public Harbour(String harbourName) {
+        this.harbourName = harbourName;
+    }
+    
+    public void getHarbour(){
+        System.out.println("Name \t: " + this.getHarbourName());
+    }
+    
+    public void editHarbour(String harbourName){
+        this.harbourName = harbourName;
+    }
+
+    public String getHarbourName() {
+        return harbourName;
+    }
+    
     
 }

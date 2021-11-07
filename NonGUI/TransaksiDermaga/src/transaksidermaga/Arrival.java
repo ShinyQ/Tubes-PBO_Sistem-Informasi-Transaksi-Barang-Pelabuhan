@@ -10,5 +10,5 @@ package transaksidermaga;
  * @author ShinyQ
  */
 public interface Arrival {
-    
+    String getArrivalTime();
 }
