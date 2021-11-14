@@ -10,17 +10,21 @@ package transaksidermaga;
  * @author ShinyQ
  */
 public class Customer {
-    private String name, phone, address;
+    private String username, password, name, phone, address;
     private Transaction[] transaction = new Transaction[1];
     private int i;
 
-    public Customer(String name, String phone, String address) {
+    public Customer(String username, String password, String name, String phone, String address) {
+        this.username = username;
+        this.password = password;
         this.name = name;
         this.phone = phone;
         this.address = address;
     }
     
-    public void editCustomer(String name, String phone, String address){
+    public void editProfile(String username, String password, String name, String phone, String address){
+        this.username = username;
+        this.password = password;   
         this.name = name;
         this.phone = phone;
         this.address = address;
@@ -36,7 +40,7 @@ public class Customer {
         System.out.println("Address : " + this.getAddress());
     }
     
-    public void showAllTransaction(){
+    public void getCustomerTransaction(){
         getCustomer();
         for (int i=0;i<transaction.length;i++){
             System.out.println("Transaction ke-" + (i+1) + " : ");
@@ -44,7 +48,7 @@ public class Customer {
             System.out.println("Total Cost \t: " + transaction[i].getTotalCost());
             System.out.println("Total Weight \t: " + transaction[i].getTotalWeight());
             System.out.println("Item \t: "); 
-            transaction[i].getAllItem();
+            transaction[i].getItem();
         }
     }
     
@@ -66,6 +70,14 @@ public class Customer {
 
     public Transaction[] getTransaction() {
         return transaction;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPassword() {
+        return password;
     }
     
     
