@@ -10,65 +10,37 @@ package transaksidermaga;
  * @author ShinyQ
  */
 public class Container {
-    private String containerNumber, containerType, containerSize;
-    private ItemLiquid[] itemLiquid = new ItemLiquid[1];
-    private ItemSolid[] itemSolid = new ItemSolid[1];
-    protected int i, k;
+    private String number, type, size;
     
-
     public Container(String containerNumber, String containerType, String containerSize) {
-        this.containerNumber = containerNumber;
-        this.containerType = containerType;
-        this.containerSize = containerSize;
-    }
-    
-    public void addItemLiquid(ItemLiquid L){
-        if (i<itemLiquid.length){
-            itemLiquid[i++] = L;
-        }
-    }
-    
-    public void addItemSolid(ItemSolid S){
-        if (k<itemSolid.length){
-            itemSolid[k++] = S;
-        }
-    }
-    
-    public void getAllItem(){
-        for (int j = 0;j<itemLiquid.length;j++){
-            System.out.println("\t\titem Liquid ke- " + (j+1) + ": ");
-            itemLiquid[j].getItem();
-        }
-        for (int l = 0;l<itemSolid.length;l++){
-            System.out.println("\t\titem Solid ke- " + (l+1) + ": ");
-            itemSolid[l].getItem();
-        }
+        this.number = containerNumber;
+        this.type = containerType;
+        this.size = containerSize;
     }
     
     public void getContainer(){
-        System.out.println("\tContainer info :");
-        System.out.println("\t\tNo \t: " + this.getContainerNumber());
-        System.out.println("\t\tSize \t: " + this.getContainerSize());
-        System.out.println("\t\tType \t: " + this.getContainerType());
-        getAllItem();
+        System.out.println("Container info :");
+        System.out.println("\tNo \t: " + this.getContainerNumber());
+        System.out.println("\tSize \t: " + this.getContainerSize());
+        System.out.println("\tType \t: " + this.getContainerType());
     }
     
     public void editContainer(String containerNumber, String containerType,String containerSize){
-        this.containerNumber = containerNumber;
-        this.containerType = containerType;
-        this.containerSize = containerSize;
+        this.number = containerNumber;
+        this.type = containerType;
+        this.size = containerSize;
     }
 
     public String getContainerNumber() {
-        return containerNumber;
+        return number;
     }
 
     public String getContainerType() {
-        return containerType;
+        return type;
     }
 
     public String getContainerSize() {
-        return containerSize;
+        return size;
     }
     
     

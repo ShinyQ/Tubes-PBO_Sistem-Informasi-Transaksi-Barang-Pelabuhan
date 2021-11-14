@@ -5,19 +5,27 @@
  */
 package transaksidermaga;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author ShinyQ
  */
-public class Item implements Arrival{
+public abstract class Item implements Arrival{
     private int itemID;
     private String name;
     private int weight;
+    private String arrivalTime;
 
-    public Item(int itemID, String name, int weight) {
+    public Item(int itemID, String name, int weight, String arrivalTime) {
         this.itemID = itemID;
         this.name = name;
         this.weight = weight;
+        this.arrivalTime = arrivalTime;
     }
     
     public void getItem(){
@@ -27,15 +35,20 @@ public class Item implements Arrival{
         System.out.println("\t\tWeight \t: " + this.getWeight() );
     }
     
-    public void editItem(int itemID, String name, int weight){
-        this.itemID = itemID;
-        this.name = name;
-        this.weight = weight;
-    }
-    
     @Override
     public String getArrivalTime(){
-        return "";
+        SimpleDateFormat ft = new SimpleDateFormat("dd MMMM yyyy HH:mm:ss");
+        Date date1 = null;  
+        try {
+            date1 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(arrivalTime);
+        } catch (ParseException ex) {
+            Logger.getLogger(Ship.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return ft.format(date1);
+    }
+    
+    public void setArrivalTime(String arrivalTime){
+        this.arrivalTime = arrivalTime;
     }
 
     public int getItemID() {
