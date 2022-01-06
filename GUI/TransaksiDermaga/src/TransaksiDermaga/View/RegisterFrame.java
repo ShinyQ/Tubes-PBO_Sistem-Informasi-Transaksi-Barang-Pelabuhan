@@ -5,16 +5,19 @@
  */
 package TransaksiDermaga.View;
 
+import TransaksiDermaga.Controller.RegisterController;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Hanvito Michael Lee
  */
-public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
+public class RegisterFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form RegisterFrame
@@ -23,7 +26,6 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
         initComponents();
         setLayoutManager();
         addComponentsToContainer();
-        addActionEvent();
     }
     
     Container container = getContentPane();
@@ -50,42 +52,42 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
         container.add(resetButton);
     }
     
-    @Override
-    public void actionPerformed(ActionEvent e){
-        if (e.getSource() == registerButton) {
-            String name, username, phone, address, password;
-            name = nameTextField.getText();
-            username = nameTextField.getText();
-            phone = nameTextField.getText();
-            address = nameTextField.getText();
-            password = passwordField.getText();
-            JOptionPane.showMessageDialog(this, "Register Successful");
-        }
-        
-        if (e.getSource() == resetButton) {
-            nameTextField.setText("");
-            usernameTextField.setText("");
-            phoneTextField.setText("");
-            addressTextField.setText("");
-            passwordField.setText("");
-        }
-        
-        if (e.getSource() == showCheckBox) {
-            if (showCheckBox.isSelected()) {
-                passwordField.setEchoChar((char) 0);
-            } else {
-                passwordField.setEchoChar('*');
-            }
-
-        }
-    }
-    
-    public void addActionEvent() {
-        //adding Action listener to components
-        resetButton.addActionListener(this);
-        registerButton.addActionListener(this);
-        showCheckBox.addActionListener(this);
-    }
+//    @Override
+//    public void actionPerformed(ActionEvent e){
+//        if (e.getSource() == registerButton) {
+//            String name, username, phone, address, password;
+//            name = nameTextField.getText();
+//            username = nameTextField.getText();
+//            phone = nameTextField.getText();
+//            address = nameTextField.getText();
+//            password = passwordField.getText();
+//            JOptionPane.showMessageDialog(this, "Register Successful");
+//        }
+//        
+//        if (e.getSource() == resetButton) {
+//            nameTextField.setText("");
+//            usernameTextField.setText("");
+//            phoneTextField.setText("");
+//            addressTextField.setText("");
+//            passwordField.setText("");
+//        }
+//        
+//        if (e.getSource() == showCheckBox) {
+//            if (showCheckBox.isSelected()) {
+//                passwordField.setEchoChar((char) 0);
+//            } else {
+//                passwordField.setEchoChar('*');
+//            }
+//
+//        }
+//    }
+//    
+//    public void addActionEvent() {
+//        //adding Action listener to components
+//        resetButton.addActionListener(this);
+//        registerButton.addActionListener(this);
+//        showCheckBox.addActionListener(this);
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,6 +131,11 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
         phoneTextField.setText(" ");
 
         addressTextField.setText(" ");
+        addressTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addressTextFieldActionPerformed(evt);
+            }
+        });
 
         registerButton.setText("Register");
         registerButton.addActionListener(new java.awt.event.ActionListener() {
@@ -155,21 +162,29 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
                     .addGroup(layout.createSequentialGroup()
                         .addGap(73, 73, 73)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(25, 25, 25))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(23, 23, 23))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(13, 13, 13))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(3, 3, 3)))
                         .addGap(31, 31, 31)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(showCheckBox)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(nameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
                                 .addComponent(usernameTextField)
                                 .addComponent(phoneTextField)
                                 .addComponent(addressTextField)
                                 .addComponent(passwordField)))))
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addGap(84, 84, 84))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,28 +192,28 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
                 .addGap(69, 69, 69)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(nameTextField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(usernameTextField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(phoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(phoneTextField))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(addressTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(addressTextField))
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(passwordField)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(showCheckBox)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(resetButton)
+                    .addComponent(resetButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(registerButton))
                 .addGap(17, 17, 17))
         );
@@ -209,6 +224,10 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
     private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_registerButtonActionPerformed
+
+    private void addressTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addressTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addressTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -244,7 +263,49 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
             }
         });
     }
-
+    public void ResetForm(){
+        usernameTextField.setText("");
+        passwordField.setText("");
+        nameTextField.setText("");
+        phoneTextField.setText("");
+        addressTextField.setText("");
+    }
+    
+    public void show(JCheckBox e){
+        if (e.isSelected()) {
+                passwordField.setEchoChar((char) 0);
+            } else {
+                passwordField.setEchoChar('*');
+            }
+    }
+    
+    public String getUsername(){
+        return usernameTextField.getText();
+    }
+    public String getPassword(){
+        return String.valueOf(passwordField.getPassword());
+    }
+    public String getName(){
+        return nameTextField.getText();
+    }
+    public String getPhone(){
+        return phoneTextField.getText();
+    }
+    public String getAddress(){
+        return addressTextField.getText();
+    }
+    
+    public JButton btnReset(){
+        return resetButton;
+    }
+    
+    public JButton btnRegis(){
+        return registerButton;
+    }
+    
+    public JCheckBox showPassword(){
+        return showCheckBox;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressTextField;
     private javax.swing.JLabel jLabel1;
@@ -260,5 +321,11 @@ public class RegisterFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JCheckBox showCheckBox;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
+
+    public void addActionListener(ActionListener e) {
+        registerButton.addActionListener(e);
+        resetButton.addActionListener(e);
+        showCheckBox.addActionListener(e);
+    }
 
 }

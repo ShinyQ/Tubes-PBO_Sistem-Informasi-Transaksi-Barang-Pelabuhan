@@ -22,65 +22,35 @@ public class LoginFrame extends javax.swing.JFrame implements ActionListener {
      */
     public LoginFrame() {
         initComponents();
-        setLayoutManager();
-        addComponentsToContainer();
-        addActionEvent();
     }
-
-    Container container = getContentPane();
-
-    public void setLayoutManager() {
-        //Setting layout manager of Container to null
-        container.setLayout(null);
-    }
-
-    public void addComponentsToContainer() {
-        //Adding each components to the Container
-        container.add(jLabel1);
-        container.add(jLabel2);
-        container.add(jTextField1);
-        container.add(jPasswordField1);
-        container.add(jCheckBox1);
-        container.add(LoginButton);
-        container.add(RegisterButton);
-    }
-
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == LoginButton) {
-            String userText;
-            String pwdText;
-            userText = jTextField1.getText();
-            pwdText = jPasswordField1.getText();
-            if (userText.equalsIgnoreCase("test") && pwdText.equalsIgnoreCase("12345")) {
-                JOptionPane.showMessageDialog(this, "Login Successful");
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid Username or Password");
-            }
-
-        }
-        
-        if (e.getSource() == RegisterButton) {
-            RegisterFrame rf = new RegisterFrame();
-            rf.setTitle("Register Form");
-            rf.setVisible(true);
-            rf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            rf.setResizable(false);
-        }
-        
-        if (e.getSource() == jCheckBox1) {
-            if (jCheckBox1.isSelected()) {
+    
+    public void show(JCheckBox e){
+        if (e.isSelected()) {
                 jPasswordField1.setEchoChar((char) 0);
             } else {
                 jPasswordField1.setEchoChar('*');
             }
-
-        }
     }
-
-    public void addActionEvent() {
-        LoginButton.addActionListener(this);
-        RegisterButton.addActionListener(this);
-        jCheckBox1.addActionListener(this);
+        
+    public String getUsername(){
+        return jTextField1.getText();
+    }
+    public String getPassword(){
+        return String.valueOf(jPasswordField1.getPassword());
+    }
+    public JButton btnLogin(){
+        return LoginButton;
+    }
+    public JButton btnRegis(){
+        return RegisterButton;
+    }
+    public JCheckBox showPassword(){
+        return jCheckBox1;
+    }
+    public void addActionListener(ActionListener e) {
+         LoginButton.addActionListener(e);
+         RegisterButton.addActionListener(e);
+         jCheckBox1.addActionListener(e);
     }
 
     /**
@@ -121,7 +91,6 @@ public class LoginFrame extends javax.swing.JFrame implements ActionListener {
             }
         });
 
-        jTextField1.setText(" ");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -129,6 +98,11 @@ public class LoginFrame extends javax.swing.JFrame implements ActionListener {
         });
 
         RegisterButton.setText("Register");
+        RegisterButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegisterButtonActionPerformed(evt);
+            }
+        });
 
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -198,6 +172,10 @@ public class LoginFrame extends javax.swing.JFrame implements ActionListener {
         // TODO add your handling code here:
     }//GEN-LAST:event_LoginButtonActionPerformed
 
+    private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RegisterButtonActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -243,4 +221,9 @@ public class LoginFrame extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent ae) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
